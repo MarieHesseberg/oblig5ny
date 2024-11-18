@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Oversikt over Soknader</h1>
+<table border="1">
+    <tr>
+        <th>Navn Forelder 1</th>
+        <th>Prioriterte Barnehager</th>
+        <th>Resultat</th>
+        <th>Tilbudt Barnehage</th>
+    </tr>
+    {% for soknad in soknader %}
+    <tr>
+        <td>{{ soknad.navn_forelder_1 }}</td>
+        <td>
+            <ul>
+                {% for prioritet in soknad.prioriterte_barnehager %}
+                <li>{{ prioritet }}</li>
+                {% endfor %}
+            </ul>
+        </td>
+        <td>{{ soknad.resultat }}</td>
+        <td>{{ soknad.valgt_barnehage }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
+

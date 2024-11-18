@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Oversikt over alle soknader i databasen</h1>
+<table>
+    <tr>
+        <th>Navn Forelder 1</th>
+        <th>Prioriterte Barnehager</th>
+        <th>Resultat</th>
+        <th>Tilbudt Barnehage</th>
+    </tr>
+    {% for soknad in soknader %}
+    <tr>
+        <td>{{ soknad['navn_forelder_1'] }}</td>
+        <td>{{ soknad['prioriterte_barnehager'] }}</td>
+        <td>{{ soknad['resultat'] }}</td>
+        <td>{{ soknad['valgt_barnehage'] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

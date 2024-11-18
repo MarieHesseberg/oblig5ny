@@ -1,0 +1,175 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <title>Søknad om barnehageplass</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        h1, h3 {
+            color: #333;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+        input, select, button {
+            margin-top: 5px;
+            margin-bottom: 15px;
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="checkbox"] {
+            width: auto;
+            margin-right: 5px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .checkbox-group, .dropdown-group {
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <h1>Søknad om barnehageplass</h1>
+
+    <form action="{{ url_for('behandle') }}" method="post">
+        <!-- Informasjon om foresatt -->
+        <h3>Informasjon om foresatt</h3>
+        
+        <!-- Forelder 1 -->
+        <label for="navn_forelder_1">Navn - Forelder 1:</label>
+        <input type="text" id="navn_forelder_1" name="navn_forelder_1" required>
+
+        <label for="adresse_forelder_1">Adresse - Forelder 1:</label>
+        <input type="text" id="adresse_forelder_1" name="adresse_forelder_1" required>
+
+        <label for="telefon_forelder_1">Telefonnummer - Forelder 1:</label>
+        <input type="text" id="telefon_forelder_1" name="telefon_forelder_1" required>
+
+        <label for="personnummer_forelder_1">Personnummer - Forelder 1:</label>
+        <input type="text" id="personnummer_forelder_1" name="personnummer_forelder_1" required>
+
+        <!-- Forelder 2 -->
+        <label for="navn_forelder_2">Navn - Forelder 2:</label>
+        <input type="text" id="navn_forelder_2" name="navn_forelder_2">
+
+        <label for="adresse_forelder_2">Adresse - Forelder 2:</label>
+        <input type="text" id="adresse_forelder_2" name="adresse_forelder_2">
+
+        <label for="telefon_forelder_2">Telefonnummer - Forelder 2:</label>
+        <input type="text" id="telefon_forelder_2" name="telefon_forelder_2">
+
+        <label for="personnummer_forelder_2">Personnummer - Forelder 2:</label>
+        <input type="text" id="personnummer_forelder_2" name="personnummer_forelder_2">
+
+        <!-- Informasjon om barnet -->
+        <h3>Informasjon om barnet</h3>
+        <label for="personnummer_barn_1">Personnummer - Barn 1:</label>
+        <input type="text" id="personnummer_barn_1" name="personnummer_barn_1" required>
+
+        <label for="personnummer_barn_2">Personnummer - Barn 2:</label>
+        <input type="text" id="personnummer_barn_2" name="personnummer_barn_2">
+
+        <!-- Fortrinnsrett -->
+        <h3>Fortrinnsrett</h3>
+        <div class="checkbox-group">
+            <label><input type="checkbox" id="fortrinnsrett_barnevern" name="fortrinnsrett_barnevern"> Fortrinnsrett - Barnevern</label>
+            <label><input type="checkbox" id="fortrinnsrett_sykdom_familie" name="fortrinnsrett_sykdom_familie"> Fortrinnsrett - Sykdom i Familien</label>
+            <label><input type="checkbox" id="fortrinnsrett_sykdom_barn" name="fortrinnsrett_sykdom_barn"> Fortrinnsrett - Sykdom på Barnet</label>
+            <label for="fortrinnsrett_annet">Fortrinnsrett - Annet:</label>
+            <input type="text" id="fortrinnsrett_annet" name="fortrinnsrett_annet">
+        </div>
+
+        <!-- Velg ønsket barnehage (multiple priority) -->
+        <h3>Liste over Barnehager (Prioritert)</h3>
+        <div class="dropdown-group">
+            <label for="barnehage_prioritet_1">Prioritet 1:</label>
+            <select id="barnehage_prioritet_1" name="barnehage_prioritet_1" required>
+                <option value="Sørlandet Barnehage">Sørlandet Barnehage</option>
+                <option value="Kristiansand Småbarnssenter">Kristiansand Småbarnssenter</option>
+                <option value="Blåbærtoppen Barnehage">Blåbærtoppen Barnehage</option>
+                <option value="Randesund Liten og Stor Barnehage">Randesund Liten og Stor Barnehage</option>
+                <option value="Havgløtt Barnehage">Havgløtt Barnehage</option>
+                <option value="Vågsbygd Skolebarnehage">Vågsbygd Skolebarnehage</option>
+                <option value="Fjordglimt Barnehage">Fjordglimt Barnehage</option>
+                <option value="Kilden Barn og Lek">Kilden Barn og Lek</option>
+                <option value="Eventyrhuset Barnehage">Eventyrhuset Barnehage</option>
+                <option value="Trollstua Barnehage">Trollstua Barnehage</option>
+            </select>
+
+            <label for="barnehage_prioritet_2">Prioritet 2:</label>
+            <select id="barnehage_prioritet_2" name="barnehage_prioritet_2">
+                <option value="Sørlandet Barnehage">Sørlandet Barnehage</option>
+                <option value="Kristiansand Småbarnssenter">Kristiansand Småbarnssenter</option>
+                <option value="Blåbærtoppen Barnehage">Blåbærtoppen Barnehage</option>
+                <option value="Randesund Liten og Stor Barnehage">Randesund Liten og Stor Barnehage</option>
+                <option value="Havgløtt Barnehage">Havgløtt Barnehage</option>
+                <option value="Vågsbygd Skolebarnehage">Vågsbygd Skolebarnehage</option>
+                <option value="Fjordglimt Barnehage">Fjordglimt Barnehage</option>
+                <option value="Kilden Barn og Lek">Kilden Barn og Lek</option>
+                <option value="Eventyrhuset Barnehage">Eventyrhuset Barnehage</option>
+                <option value="Trollstua Barnehage">Trollstua Barnehage</option>
+            </select>
+
+            <label for="barnehage_prioritet_3">Prioritet 3:</label>
+            <select id="barnehage_prioritet_3" name="barnehage_prioritet_3">
+                <option value="Sørlandet Barnehage">Sørlandet Barnehage</option>
+                <option value="Kristiansand Småbarnssenter">Kristiansand Småbarnssenter</option>
+                <option value="Blåbærtoppen Barnehage">Blåbærtoppen Barnehage</option>
+                <option value="Randesund Liten og Stor Barnehage">Randesund Liten og Stor Barnehage</option>
+                <option value="Havgløtt Barnehage">Havgløtt Barnehage</option>
+                <option value="Vågsbygd Skolebarnehage">Vågsbygd Skolebarnehage</option>
+                <option value="Fjordglimt Barnehage">Fjordglimt Barnehage</option>
+                <option value="Kilden Barn og Lek">Kilden Barn og Lek</option>
+                <option value="Eventyrhuset Barnehage">Eventyrhuset Barnehage</option>
+                <option value="Trollstua Barnehage">Trollstua Barnehage</option>
+            </select>
+        </div>
+
+        <!-- Tidspunkt for oppstart, søsken i barnehagen, and inntekt -->
+        <label for="tidspunkt_oppstart">Tidspunkt for Oppstart:</label>
+        <input type="date" id="tidspunkt_oppstart" name="tidspunkt_oppstart">
+
+        <label for="sosken_i_barnehagen"><input type="checkbox" id="sosken_i_barnehagen" name="sosken_i_barnehagen"> Har Søsken som Går i Barnehagen</label>
+
+        <label for="brutto_inntekt">Brutto Inntekt Husholdning:</label>
+        <input type="text" id="brutto_inntekt" name="brutto_inntekt" required>
+
+        <!-- Send inn søknaden -->
+        <button type="submit">Send inn søknad</button>
+    </form>
+</body>
+</html>
+
+{% endblock %}
